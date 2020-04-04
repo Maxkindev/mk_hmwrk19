@@ -1,0 +1,22 @@
+{
+  "name": "mk_hmwrk19",
+  "version": "1.0.0",
+  "description": "todo_list_with_gulp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxkindev/mk_hmwrk19.git"
+  },
+  "author": "MK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maxkindev/mk_hmwrk19/issues"
+  },
+  "homepage": "https://github.com/Maxkindev/mk_hmwrk19#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

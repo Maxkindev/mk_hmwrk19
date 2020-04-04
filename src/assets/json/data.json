@@ -1,0 +1,26 @@
+{
+  "priorities": [
+    "Low", 
+    "Medium", 
+    "High"
+  ],
+  "statuses": [
+    "Open",
+    "In Progress", 
+    "Done"
+  ],
+  "defaultTasks": [
+    {
+      "id": "1",
+      "taskName": "Finish homework",
+      "taskPriority": "High",
+      "taskStatus": "Done"
+    },
+    {
+      "id": "2",
+      "taskName": "Learn new theory",
+      "taskPriority": "High",
+      "taskStatus": "In Progress"
+    }
+  ]
+}
