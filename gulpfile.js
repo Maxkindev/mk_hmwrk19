@@ -8,7 +8,7 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 
 function bundleJs (cb) {
-  gulp.src('./src/assets/js/scripts/**/*.js')
+  gulp.src('./src/assets/js/**/*.js')
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['@babel/env']
@@ -16,7 +16,7 @@ function bundleJs (cb) {
     .pipe(uglify())
     .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./src/assets/js'))
+    .pipe(gulp.dest('./build/assets/js'))
     .pipe(browserSync.stream());
   cb();
 }
@@ -26,7 +26,21 @@ function compileStyles (cb) {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./src/assets/css'))
+    .pipe(gulp.dest('./build/assets/css'))
+    .pipe(browserSync.stream());
+  cb();
+}
+
+function buildHtml(cb) {
+  gulp.src('./src/**/*.html')
+    .pipe(gulp.dest('./build'))
+    .pipe(browserSync.stream());
+  cb();
+}
+
+function buildJson(cb) {
+  gulp.src('./src/assets/json/*.json')
+    .pipe(gulp.dest('./build/assets/json'))
     .pipe(browserSync.stream());
   cb();
 }
@@ -34,7 +48,7 @@ function compileStyles (cb) {
 function initLocalServer(cb) {
   browserSync.init({
     server: {
-      baseDir: './src'
+      baseDir: './build'
     },
     port: 3000,
     notify: false
@@ -43,15 +57,18 @@ function initLocalServer(cb) {
 }
 
 function watchEverything(cb) {
-  gulp.watch('./src/assets/js/scripts/**/*.scss', bundleJs);
+  gulp.watch('./src/assets/js/**/*.js', bundleJs);
   gulp.watch('./src/assets/scss/**/*.scss', compileStyles);
-  gulp.watch('./src/**/**/*.html').on('change', browserSync.reload);
+  gulp.watch('./src/**/*.html', buildHtml);
+  gulp.watch('./src/assets/json/*.json', buildJson);
   cb();
 }
 
 exports.default = gulp.series( 
   bundleJs,
-  compileStyles, 
+  compileStyles,
+  buildHtml,
+  buildJson,
   gulp.parallel(
     initLocalServer,
     watchEverything
