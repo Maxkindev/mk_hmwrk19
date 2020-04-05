@@ -6,6 +6,7 @@ const browserSync = require('browser-sync').create();
 const babel = require('gulp-babel'); // npm install --save-dev gulp-babel @babel/core @babel/preset-env
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
+const del = require('del');
 
 function bundleJs (cb) {
   gulp.src('./src/assets/js/**/*.js')
@@ -74,3 +75,10 @@ exports.default = gulp.series(
     watchEverything
   )
 );
+
+function delBuild(cb) {
+  del('./build');
+  cb();
+}
+
+exports.delBuild = delBuild;
