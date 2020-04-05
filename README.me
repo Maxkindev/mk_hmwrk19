@@ -1,0 +1,40 @@
+This is practise with gulp.js
+Next plugins were added:
+- "@babel/core": "^7.9.0",
+- "@babel/preset-env": "^7.9.0",
+- "browser-sync": "^2.26.7",
+- "del": "^5.1.0",
+- "gulp": "^4.0.2",
+- "gulp-babel": "^8.0.0",
+- "gulp-concat": "^2.6.1",
+- "gulp-sass": "^4.0.2",
+- "gulp-sourcemaps": "^2.6.5",
+- "gulp-uglify": "^3.0.2"
+
+Enter 'npm start' or 'gulp' in terminal to build project, 
+run local server, hang watchers for auto save and browser reload.
+
+Enter 'gulp delBuild' in terminal to delete project build.
+
+FOR 'dist' folder:
+1)
+// TO CLEAN SOURCEMAP COMMENT in final js file.
+// function delComment (cb) {
+//   gulp.src('./build/assets/js/**/*.js')
+//     .pipe(uglify())
+//     .pipe(gulp.dest('./dist/assets/js'));
+//   cb();
+// }
+// exports.delComment = delComment;
+
+2)
+// TO CLEAN SOURCEMAP COMMENT in final css file 
+// -> npm install gulp-clean-css --save-dev
+// const cleancss = require('gulp-clean-css')
+// function delComment (cb) {
+//   gulp.src('./build/assets/css/**/*.css')
+//     .pipe(cleancss( {level: { 1: { specialComments: 0 } } }))
+//     .pipe(gulp.dest('./dist/assets/css'));
+//   cb();
+// }
+// exports.delComment = delComment;
